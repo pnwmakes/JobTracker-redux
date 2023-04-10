@@ -65,14 +65,19 @@ const App = () => {
   const filteredJobs = jobs.filter((job) => {
     const searchTermLower = searchTerm.toLowerCase();
     const appliedDateLower = moment(job.appliedDate, 'MM/DD/YYYY').format('MM/DD/YYYY').toLowerCase();
+    const isSearchTermDate = moment(searchTermLower, 'MM/DD/YYYY', true).isValid();
+    const isAppliedDateMatch = appliedDateLower.includes(searchTermLower);
+
     return (
       job.title.toLowerCase().includes(searchTermLower) ||
       job.company.toLowerCase().includes(searchTermLower) ||
       job.location.toLowerCase().includes(searchTermLower) ||
       job.description.toLowerCase().includes(searchTermLower) ||
-      job.status.toLowerCase().includes(searchTermLower)
+      job.status.toLowerCase().includes(searchTermLower) ||
+      (isSearchTermDate && isAppliedDateMatch)
     );
   });
+
 
   return (
     <div className="App">
