@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 
 const initialState = [
     {
@@ -10,6 +9,7 @@ const initialState = [
         description: 'We are looking for a Frontend grunt intern.',
         status: 'no-answer',
         notes: [],
+        appliedDate: '04/12/2023',
     },
     {
         id: 2,
@@ -19,6 +19,7 @@ const initialState = [
         description: 'We are looking for a Backend DevOps, No experience.',
         status: 'no-answer',
         notes: [],
+        appliedDate: '03/23/2023'
     },
     {
         id: 3,
@@ -28,6 +29,7 @@ const initialState = [
         description: 'We are looking for Fullstack type of person, No experience.',
         status: 'no-answer',
         notes: [],
+        appliedDate: '04/03/2023'
     },
     {
         id: 4,
@@ -37,6 +39,7 @@ const initialState = [
         description: 'We are looking for someone to break things.',
         status: 'no-answer',
         notes: [],
+        appliedDate: '04/09/2023'
     },
 ];
 

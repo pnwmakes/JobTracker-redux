@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { Formik, Field, ErrorMessage } from 'formik';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import * as Yup from 'yup';
 
 const jobSchema = Yup.object().shape({
@@ -8,6 +10,7 @@ const jobSchema = Yup.object().shape({
     company: Yup.string().required('Company is required'),
     location: Yup.string().required('Location is required'),
     description: Yup.string().required('Description is required'),
+    appliedDate: Yup.date().required('Applied date is required'),
 });
 
 const AddJobModal = ({ show, onHide, onAddJob }) => {
@@ -18,7 +21,7 @@ const AddJobModal = ({ show, onHide, onAddJob }) => {
             </Modal.Header>
             <Modal.Body>
                 <Formik
-                    initialValues={{ title: '', company: '', location: '', description: '' }}
+                    initialValues={{ title: '', company: '', location: '', description: '', appliedDate: new Date() }}
                     validationSchema={jobSchema}
                     onSubmit={(values, { setSubmitting, resetForm }) => {
                         setSubmitting(true);
@@ -28,7 +31,7 @@ const AddJobModal = ({ show, onHide, onAddJob }) => {
                         onHide();
                     }}
                 >
-                    {({ handleSubmit, isSubmitting }) => (
+                    {({ handleSubmit, isSubmitting, setFieldValue, values }) => (
                         <Form onSubmit={handleSubmit}>
                             <Form.Group>
                                 <Form.Label>Title</Form.Label>
@@ -49,6 +52,15 @@ const AddJobModal = ({ show, onHide, onAddJob }) => {
                                 <Form.Label>Description</Form.Label>
                                 <Field as="textarea" rows={3} name="description" className="form-control" />
                                 <ErrorMessage name="description" component="div" className="text-danger" />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Applied Date</Form.Label>
+                                <DatePicker
+                                    selected={values.appliedDate}
+                                    onChange={(date) => setFieldValue('appliedDate', date)}
+                                    className="form-control"
+                                />
+                                <ErrorMessage name="appliedDate" component="div" className="text-danger" />
                             </Form.Group>
                             <Button variant="primary" type="submit" disabled={isSubmitting}>
                                 Add Job

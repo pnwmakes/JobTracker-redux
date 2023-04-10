@@ -6,7 +6,7 @@ function JobList({ jobs, onDeleteJob, onStatusChange, onUpdateJob }) {
     return (
         <ListGroup>
             {jobs.map((job) => (
-                <JobItem key={job.id} job={job} onDeleteJob={onDeleteJob} onStatusChange={onStatusChange} onUpdateJob={onUpdateJob} />
+                <JobItem key={job.id} job={job} onDeleteJob={onDeleteJob} onStatusChange={onStatusChange} onUpdateJob={onUpdateJob} appliedDate={job.appliedDate} />
             ))}
         </ListGroup>
     );

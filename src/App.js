@@ -4,8 +4,10 @@ import JobList from './components/JobList';
 import AddJobModal from './components/AddJobModal';
 import { Navbar, Container, Button, FormControl } from 'react-bootstrap';
 import './App.css';
-import { addJob, deleteJob, updateJob, updateJobStatus, addNote } from './redux/jobSlice';
+import { addJob, deleteJob, updateJob, updateJobStatus } from './redux/jobSlice';
 import { setSearchTerm } from './redux/searchSlice';
+import moment from 'moment';
+
 
 const Navigation = ({ onAddJob, onSearchChange }) => {
   const [showModal, setShowModal] = React.useState(false);
@@ -39,15 +41,17 @@ const App = () => {
   };
 
   const handleAddJob = (job) => {
-    dispatch(addJob(job));
+    const formattedJob = {
+      ...job,
+      appliedDate: moment(job.appliedDate).format('MM/DD/YYYY'),
+    };
+    dispatch(addJob(formattedJob));
   };
+
+
 
   const handleStatusChange = (jobId, newStatus) => {
     dispatch(updateJobStatus({ jobId, newStatus }));
-  };
-
-  const handleAddNote = (jobId, newNote) => {
-    dispatch(addNote({ jobId, newNote }));
   };
 
   const handleUpdateJob = (updatedJob) => {
@@ -60,6 +64,7 @@ const App = () => {
 
   const filteredJobs = jobs.filter((job) => {
     const searchTermLower = searchTerm.toLowerCase();
+    const appliedDateLower = moment(job.appliedDate, 'MM/DD/YYYY').format('MM/DD/YYYY').toLowerCase();
     return (
       job.title.toLowerCase().includes(searchTermLower) ||
       job.company.toLowerCase().includes(searchTermLower) ||

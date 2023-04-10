@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ListGroupItem, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import NotesModal from './NotesModal';
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment';
 
 const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
     const [showNotesModal, setShowNotesModal] = useState(false);
@@ -49,6 +50,8 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
             <p>{job.location}</p>
             <p>{job.description}</p>
             <p>Status: {job.status}</p>
+            <p>Applied Date: {moment(job.appliedDate).format('MM/DD/YYYY')}</p>
+
             <div className="button-group">
                 <DropdownButton
                     id={`status-dropdown-${job.id}`}
