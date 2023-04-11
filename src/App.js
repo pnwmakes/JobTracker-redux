@@ -2,34 +2,12 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import JobList from './components/JobList';
 import AddJobModal from './components/AddJobModal';
-import { Navbar, Container, Button, FormControl } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import './App.css';
 import { addJob, deleteJob, updateJob, updateJobStatus } from './redux/jobSlice';
 import { setSearchTerm } from './redux/searchSlice';
 import moment from 'moment';
-
-
-const Navigation = ({ onAddJob, onSearchChange }) => {
-  const [showModal, setShowModal] = React.useState(false);
-
-  const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
-
-  return (
-    <Navbar bg="primary" variant="dark">
-      <Navbar.Brand className="mr-auto ml-3">My Job Tracker</Navbar.Brand>
-      <Button className="calendar-btn mr-3" variant="outline-light">Calendar</Button>
-      <FormControl
-        type="text"
-        placeholder="Search"
-        className="mr-sm-2 search-input"
-        onChange={(e) => onSearchChange(e.target.value)}
-      />
-      <Button className="add-job-btn mr-3 ml-3 border-dark text-dark" variant="outline-success" onClick={handleShowModal}>Add Job</Button>
-      <AddJobModal show={showModal} onHide={handleCloseModal} onAddJob={onAddJob} />
-    </Navbar>
-  );
-};
+import Navigation from './components/Navigation';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,8 +25,6 @@ const App = () => {
     };
     dispatch(addJob(formattedJob));
   };
-
-
 
   const handleStatusChange = (jobId, newStatus) => {
     dispatch(updateJobStatus({ jobId, newStatus }));
@@ -78,7 +54,6 @@ const App = () => {
     );
   });
 
-
   return (
     <div className="App">
       <Navigation onAddJob={handleAddJob} onSearchChange={handleSearchChange} />
@@ -92,12 +67,14 @@ const App = () => {
           onStatusChange={handleStatusChange}
           onUpdateJob={handleUpdateJob}
         />
+        <AddJobModal onAddJob={handleAddJob} />
       </Container>
     </div>
   );
 };
 
 export default App;
+
 
 
 

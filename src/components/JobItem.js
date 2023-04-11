@@ -27,8 +27,9 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
 
         const updatedJob = {
             ...job,
-            notes: [...job.notes, newNote],
+            notes: [...(job.notes || []), newNote],
         };
+
 
         onUpdateJob(updatedJob);
     };
