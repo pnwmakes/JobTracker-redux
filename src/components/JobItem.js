@@ -66,7 +66,7 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
                     <Dropdown.Item eventKey="Rejection">Rejection</Dropdown.Item>
                     <Dropdown.Item eventKey="Offer">Offer</Dropdown.Item>
                     <Dropdown.Item eventKey="Follow up">Follow up</Dropdown.Item>
-                    <Dropdown.Item eventKey="Follow up">Waiting</Dropdown.Item>
+                    <Dropdown.Item eventKey="waiting">Waiting</Dropdown.Item>
                 </DropdownButton>
                 <Button
                     className="notes-button mr-2"
