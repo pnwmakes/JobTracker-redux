@@ -36,7 +36,7 @@ const Navigation = () => {
             <FormControl
                 type="text"
                 placeholder="Search"
-                className="mr-sm-2 search-input"
+                className="mr-sm-2 search-input search-input-flex"
                 onChange={(e) => handleSearchChange(e.target.value)}
                 value={searchTerm}
             />

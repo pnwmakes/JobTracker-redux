@@ -1,13 +1,12 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import JobList from './components/JobList';
-import AddJobModal from './components/AddJobModal';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
-import './App.css';
-import { addJob, deleteJob, updateJob, updateJobStatus } from './redux/jobSlice';
-import { setSearchTerm } from './redux/searchSlice';
 import moment from 'moment';
 import Navigation from './components/Navigation';
+import JobList from './components/JobList';
+import AddJobModal from './components/AddJobModal';
+import { addJob, deleteJob, updateJob, updateJobStatus } from './redux/jobSlice';
+import { setSearchTerm } from './redux/searchSlice';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -74,6 +73,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

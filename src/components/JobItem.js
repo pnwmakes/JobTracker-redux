@@ -30,7 +30,6 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
             notes: [...(job.notes || []), newNote],
         };
 
-
         onUpdateJob(updatedJob);
     };
 
@@ -46,7 +45,7 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
 
     return (
         <ListGroupItem className="job-item">
-            <h4>{job.title ? job.title : 'No title available'}</h4>
+            <h4>{job.title || 'No title available'}</h4>
             <p>{job.company}</p>
             <p>{job.location}</p>
             <p>{job.description}</p>
@@ -68,11 +67,7 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
                     <Dropdown.Item eventKey="Follow up">Follow up</Dropdown.Item>
                     <Dropdown.Item eventKey="waiting">Waiting</Dropdown.Item>
                 </DropdownButton>
-                <Button
-                    className="notes-button mr-2"
-                    variant="info"
-                    onClick={handleShowNotesModal}
-                >
+                <Button className="notes-button mr-2" variant="info" onClick={handleShowNotesModal}>
                     Notes
                 </Button>
                 <Button variant="danger" onClick={() => onDeleteJob(job.id)}>
@@ -91,5 +86,4 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
 };
 
 export default JobItem;
-
 

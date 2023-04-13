@@ -2,48 +2,11 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.search-input {
-  width: 250px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #34282f;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.header {
   background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -59,50 +22,49 @@
   padding-left: 20px;
 }
 
-
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #f0f0f0;
+  padding: 0 20px;
 }
 
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: 700;
-  padding-left: 20px;
 }
+
+.search-input {
+  width: 100% !important;
+  max-width: 400px;
+  margin-right: 10px;
+}
+
+.search-input-flex {
+  flex: 1;
+  margin-right: 10px;
+}
+
 
 .calendar-btn {
-  margin-right: 20px;
-  margin-left: auto;
-  background-color: rgb(212, 219, 112) !important;
-  color: black;
-  border-color: black;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  width: 250px;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.button-container {
-  padding-right: 20px;
-}
-
-.notes-button {
-  margin-right: 10px;
-
-}
-
-.update-status-button {
-  margin-right: 10px;
+  background-color: #d4db70 !important;
+  color: black !important;
+  border-color: black !important;
 }
 
 .add-job-btn {
-  margin-right: 20px;
-  margin-left: 18px;
   background-color: orange !important;
+  color: white !important;
+  border-color: orange !important;
+}
+
+.form-inline {
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.search-input {
+  flex: 1;
 }
