@@ -7,7 +7,7 @@ const initialState = [
         company: 'Big Tech & Surf Inc.',
         location: 'San Francisco, CA',
         description: 'We are looking for a Frontend grunt intern.',
-        status: 'no-answer',
+        status: 'No-answer',
         notes: [],
         appliedDate: '04/12/2023',
     },
@@ -17,7 +17,7 @@ const initialState = [
         company: 'Bagles & Loks Start Up Corp.',
         location: 'New York, NY',
         description: 'We are looking for a Backend DevOps, No experience.',
-        status: 'no-answer',
+        status: 'No-answer',
         notes: [],
         appliedDate: '03/23/2023'
     },
@@ -27,7 +27,7 @@ const initialState = [
         company: 'Coffe and Grundge LLC.',
         location: 'Seattle, WA',
         description: 'We are looking for Fullstack type of person, No experience.',
-        status: 'no-answer',
+        status: 'No-answer',
         notes: [],
         appliedDate: '04/03/2023'
     },
@@ -37,7 +37,7 @@ const initialState = [
         company: 'We Break Stuff Inc.',
         location: 'Palo Alto, CA',
         description: 'We are looking for someone to break things.',
-        status: 'no-answer',
+        status: 'No-answer',
         notes: [],
         appliedDate: '04/09/2023'
     },

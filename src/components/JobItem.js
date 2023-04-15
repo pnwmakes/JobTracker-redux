@@ -87,3 +87,6 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
 
 export default JobItem;
 
+
+
+
