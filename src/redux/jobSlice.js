@@ -73,9 +73,17 @@ const jobSlice = createSlice({
                 state[index].notes.push(newNote);
             }
         },
+        deleteNote: (state, action) => {
+            const { jobId, noteId } = action.payload;
+            const index = state.findIndex((job) => job.id === jobId);
+            if (index >= 0) {
+                const updatedNotes = state[index].notes.filter((note) => note.id !== noteId);
+                state[index].notes = updatedNotes;
+            }
+        },
     },
 });
 
-export const { addJob, deleteJob, updateJob, updateJobStatus, addNote } = jobSlice.actions;
+export const { addJob, deleteJob, updateJob, updateJobStatus, addNote, deleteNote } = jobSlice.actions;
 
 export default jobSlice.reducer;

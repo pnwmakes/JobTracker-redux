@@ -1,48 +1,56 @@
-import React from 'react';
-import { ListGroup } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { ListGroup } from 'react-bootstrap';
 import moment from 'moment';
 import JobItem from './JobItem';
 
-const JobList = ({ onDeleteJob, onUpdateJob, onStatusChange }) => {
+const JobList = () => {
     const jobs = useSelector((state) => state.jobs);
     const searchTerm = useSelector((state) => state.search.searchTerm);
 
+    const [filteredJobs, setFilteredJobs] = useState([]);
+
+    useEffect(() => {
+        setFilteredJobs(filterJobs(jobs, searchTerm));
+    }, [jobs, searchTerm]);
+
     const filterJobs = (jobs, searchTerm) => {
-        const searchTermLower = searchTerm.toLowerCase();
         return jobs.filter((job) => {
-            const appliedDateLower = moment(job.appliedDate, 'MM/DD/YYYY').format('MM/DD/YYYY').toLowerCase();
-            const isSearchTermDate = moment(searchTermLower, 'MM/DD/YYYY', true).isValid();
-            const isAppliedDateMatch = appliedDateLower.includes(searchTermLower);
+            const searchTermLower = searchTerm.toLowerCase();
+            const titleMatch = !searchTerm || (job.title && job.title.toLowerCase().includes(searchTermLower));
+            const companyMatch = !searchTerm || (job.company && job.company.toLowerCase().includes(searchTermLower));
+            const locationMatch = !searchTerm || (job.location && job.location.toLowerCase().includes(searchTermLower));
+            const descriptionMatch = !searchTerm || (job.description && job.description.toLowerCase().includes(searchTermLower));
+            const statusMatch = !searchTerm || (job.status && job.status.toLowerCase().includes(searchTermLower));
+            const dateMatch = !searchTerm || moment(job.appliedDate, 'MM/DD/YYYY').format('MM/DD/YYYY').toLowerCase().includes(searchTermLower);
 
             return (
-                job.title.toLowerCase().includes(searchTermLower) ||
-                job.company.toLowerCase().includes(searchTermLower) ||
-                job.location.toLowerCase().includes(searchTermLower) ||
-                job.description.toLowerCase().includes(searchTermLower) ||
-                job.status.toLowerCase().includes(searchTermLower) ||
-                (isSearchTermDate && isAppliedDateMatch)
+                titleMatch &&
+                companyMatch &&
+                locationMatch &&
+                descriptionMatch &&
+                statusMatch &&
+                dateMatch
             );
         });
     };
 
-    const filteredJobs = filterJobs(jobs, searchTerm);
-
     return (
         <ListGroup>
             {filteredJobs.map((job) => (
-                <JobItem
-                    key={job.id}
-                    job={job}
-                    onDeleteJob={onDeleteJob}
-                    onUpdateJob={onUpdateJob}
-                    onStatusChange={onStatusChange}
-                />
+                <JobItem key={job.id} job={job} />
             ))}
         </ListGroup>
     );
-};
+}
 
 export default JobList;
+
+
+
+
+
+
+
 
 

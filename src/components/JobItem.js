@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ListGroupItem, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import NotesModal from './NotesModal';
 import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
+import { deleteJob, updateJobStatus, addNote, updateJob } from '../redux/jobSlice';
 
-const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
+const JobItem = ({ job }) => {
+    const dispatch = useDispatch();
     const [showNotesModal, setShowNotesModal] = useState(false);
 
     const handleStatusChange = (newStatus) => {
-        onStatusChange(job.id, newStatus);
+        dispatch(updateJobStatus({ jobId: job.id, newStatus }));
     };
 
     const handleShowNotesModal = () => {
@@ -25,12 +28,7 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
             text: noteText,
         };
 
-        const updatedJob = {
-            ...job,
-            notes: [...(job.notes || []), newNote],
-        };
-
-        onUpdateJob(updatedJob);
+        dispatch(addNote({ jobId: job.id, newNote }));
     };
 
     const handleDeleteNote = (noteId) => {
@@ -40,7 +38,11 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
             notes: updatedNotes,
         };
 
-        onUpdateJob(updatedJob);
+        dispatch(updateJob(updatedJob));
+    };
+
+    const handleDeleteJob = () => {
+        dispatch(deleteJob(job.id));
     };
 
     return (
@@ -70,7 +72,7 @@ const JobItem = ({ job, onDeleteJob, onStatusChange, onUpdateJob }) => {
                 <Button className="notes-button mr-2" variant="info" onClick={handleShowNotesModal}>
                     Notes
                 </Button>
-                <Button variant="danger" onClick={() => onDeleteJob(job.id)}>
+                <Button variant="danger" onClick={handleDeleteJob}>
                     Delete
                 </Button>
             </div>
