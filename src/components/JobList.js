@@ -25,11 +25,11 @@ const JobList = () => {
             const dateMatch = !searchTerm || moment(job.appliedDate, 'MM/DD/YYYY').format('MM/DD/YYYY').toLowerCase().includes(searchTermLower);
 
             return (
-                titleMatch &&
-                companyMatch &&
-                locationMatch &&
-                descriptionMatch &&
-                statusMatch &&
+                titleMatch ||
+                companyMatch ||
+                locationMatch ||
+                descriptionMatch ||
+                statusMatch ||
                 dateMatch
             );
         });
